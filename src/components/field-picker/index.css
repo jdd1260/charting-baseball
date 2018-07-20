@@ -1,0 +1,11 @@
+.field-picker {
+  font-size: 18px !important;
+  width: 1000px;
+  margin: auto;
+}
+
+.field-picker input {
+  font-size: 18px !important;
+  margin-left: 10px;
+  text-align: center;
+}

@@ -49,7 +49,7 @@ export default class Chart extends Component {
 
   updateData() {
     const { NUM_SEASONS, FIELD, IS_HITTERS } = this.props;
-    const ASCENDING = fieldAndSortingOptions[FIELD];
+    const ASCENDING = fieldAndSortingOptions[IS_HITTERS ? 'hitters' : 'pitchers'][FIELD];
 
     loadData(IS_HITTERS).then(data => {
       const playerBests = bestPeriodPerPlayer(
@@ -232,7 +232,11 @@ export default class Chart extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.IS_HITTERS !== prevProps.IS_HITTERS) {
+    if (
+      this.props.IS_HITTERS !== prevProps.IS_HITTERS ||
+      this.props.NUM_SEASONS !== prevProps.NUM_SEASONS ||
+      this.props.FIELD !== prevProps.FIELD
+    ) {
       this.updateData();
     }
   }
