@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Chart from '../chart';
 import FieldPicker from '../field-picker';
+import Stepper from '../stepper';
 
 class App extends Component {
   constructor() {
@@ -17,6 +18,10 @@ class App extends Component {
     this.setState({ [field]: value });
   }
 
+  changeState = (configuration) => {
+    this.setState(configuration);
+  }
+
   render() {
     return (
       <div className="App">
@@ -24,7 +29,8 @@ class App extends Component {
           <h1 className="App-title">Welcome to Joel&#39;s Baseball Data Visualization</h1>
         </header>
         <div className="container" style={ { padding: '20px 0'} }>
-          <FieldPicker { ...this.state }  changeParam={ this.changeParam } />
+          <Stepper changeState={ this.changeState } />
+          <FieldPicker { ...this.state }  changeParam={ this.changeParam } disabled={ this.state.disabled } />
           <Chart { ...this.state } />
         </div>
       </div>

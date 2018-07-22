@@ -40,7 +40,8 @@ class FieldPicker extends Component {
     FIELD: PropTypes.string.isRequired,
     IS_HITTERS: PropTypes.bool.isRequired,
     changeParam: PropTypes.func.isRequired,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    disabled: PropTypes.bool
   };
 
   changeNumSeasons = (event, value) => {
@@ -70,6 +71,7 @@ class FieldPicker extends Component {
                 min={ 1 }
                 max={ 22 }
                 step={1}
+                disabled={ this.props.disabled }
                 onChange={ this.changeNumSeasons } />
                 { this.props.NUM_SEASONS }
             </Paper>
@@ -82,6 +84,7 @@ class FieldPicker extends Component {
                   value={ this.props.FIELD }
                   onChange={ this.changeField }
                   className={ classes.select }
+                  disabled={ this.props.disabled }
                 >
                   { Object.keys(fieldAndSortingOptions[this.props.IS_HITTERS ? 'hitters' : 'pitchers']).map(field => (
                     <MenuItem key={ field } value={ field }>{ field }</MenuItem>
@@ -98,6 +101,7 @@ class FieldPicker extends Component {
                   value={ this.props.IS_HITTERS ? 1 : 0 }
                   onChange={ this.changeIsHitters }
                   className={ classes.select }
+                  disabled={ this.props.disabled }
                 >
                   <MenuItem value={ 1 }>Hitters</MenuItem>
                   <MenuItem value={ 0 }>Pitchers</MenuItem>

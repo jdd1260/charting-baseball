@@ -8,6 +8,7 @@ import { fieldAndSortingOptions } from '../../utils/fields';
 
 import './index.css';
 
+
 // sizing of chart
 const margin = { top: 20, right: 20, bottom: 40, left: 40 };
 const width = 1000 - margin.left - margin.right;
@@ -17,6 +18,8 @@ const height = 600 - margin.top - margin.bottom;
 const legendHeight = 10;
 const legendWidth = 50;
 const legendYPosition = height / 5;
+const lightColor = '#ff5656';
+const darkColor = '#000000';
 
 // setup x data handling
 const xValue = d => d.rank; // data -> value
@@ -38,7 +41,7 @@ const yAxis = d3.svg
 
 // setup dot color
 const cValue = d => d.Age;
-const colorScale = d3.scale.linear().range(['#FAEBD7', '#800000']);
+const colorScale = d3.scale.linear().range([lightColor, darkColor]);
 
 export default class Chart extends Component {
   static propTypes = {
@@ -63,13 +66,11 @@ export default class Chart extends Component {
         player.rankedStat = player[FIELD];
         return player;
       });
-      // this.setState({ data: forDisplay });
       this.redraw(forDisplay, { NUM_SEASONS, FIELD, IS_HITTERS, ASCENDING });
     });
   }
 
   redraw(data, { NUM_SEASONS, FIELD, IS_HITTERS, ASCENDING }) {
-    console.log("REDRAW");
     const svg = d3.select('#chart #chart-body');
     const tooltip = d3.select('#dynamic-tooltip');
     svg.html(null);
