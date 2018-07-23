@@ -19,14 +19,14 @@ const styles = theme => ({
     padding: theme.spacing.unit,
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    height: 75
+    height: 70
   },
   select: {
     display: 'block',
     'width': '80%',
     margin: 'auto',
     'text-align': 'left',
-    'margin-top': 20
+    'margin-top': 15
   },
   slider: {
     width: '80%',

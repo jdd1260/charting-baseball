@@ -3,6 +3,7 @@ import './App.css';
 import Chart from '../chart';
 import FieldPicker from '../field-picker';
 import Stepper from '../stepper';
+import About from '../about';
 
 class App extends Component {
   constructor() {
@@ -26,9 +27,11 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to Joel&#39;s Baseball Data Visualization</h1>
+          <h1 className="App-title">Who&#39;s The Best Baseball Player?</h1>
+          <h3>An exploration of the best player performances since 1968</h3>
         </header>
-        <div className="container" style={ { padding: '20px 0'} }>
+        <div className="container">
+          <About />
           <Stepper changeState={ this.changeState } />
           <FieldPicker { ...this.state }  changeParam={ this.changeParam } disabled={ this.state.disabled } />
           <Chart { ...this.state } />
