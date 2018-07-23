@@ -2,16 +2,14 @@ import React, { Component } from 'react';
 import './App.css';
 import Chart from '../chart';
 import FieldPicker from '../field-picker';
-import Stepper from '../stepper';
+import Stepper, { steps } from '../stepper';
 import About from '../about';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      NUM_SEASONS: 10,
-      FIELD: 'WAR',
-      IS_HITTERS: false
+      ...steps[0].configuration
     };
   }
 
@@ -33,7 +31,7 @@ class App extends Component {
         <div className="container">
           <About />
           <Stepper changeState={ this.changeState } />
-          <FieldPicker { ...this.state }  changeParam={ this.changeParam } disabled={ this.state.disabled } />
+          <FieldPicker { ...this.state }  changeParam={ this.changeParam } disabled={ this.state.disabled }  />
           <Chart { ...this.state } />
         </div>
       </div>

@@ -27,14 +27,15 @@ const styles = theme => ({
   }
 });
 
-const steps = [
+export const steps = [
   {
     label: 'Hittters 5 years',
     configuration: {
       IS_HITTERS: true,
       NUM_SEASONS: 5,
       FIELD: 'WAR',
-      disabled: true
+      disabled: true,
+      annotatedPlayers: ['Barry Bonds']
     }
   },
   {
@@ -43,7 +44,8 @@ const steps = [
       IS_HITTERS: true,
       NUM_SEASONS: 15,
       FIELD: 'WAR',
-      disabled: true
+      disabled: true,
+      annotatedPlayers: ['Barry Bonds']
     }
   },
   {
@@ -52,7 +54,8 @@ const steps = [
       IS_HITTERS: false,
       NUM_SEASONS: 5,
       FIELD: 'WAR',
-      disabled: true
+      disabled: true,
+      annotatedPlayers: ['Randy Johnson']
     }
   },
   {
@@ -61,7 +64,8 @@ const steps = [
       IS_HITTERS: false,
       NUM_SEASONS: 15,
       FIELD: 'WAR',
-      disabled: true
+      disabled: true,
+      annotatedPlayers: ['Randy Johnson']
     }
   },
   {
@@ -70,7 +74,8 @@ const steps = [
       IS_HITTERS: true,
       NUM_SEASONS: 10,
       FIELD: 'HR',
-      disabled: false
+      disabled: false,
+      annotatedPlayers: ['Barry Bonds', 'Randy Johnson']
     }
   },
 ];

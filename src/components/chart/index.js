@@ -48,6 +48,7 @@ export default class Chart extends Component {
     NUM_SEASONS: PropTypes.number.isRequired,
     FIELD: PropTypes.string.isRequired,
     IS_HITTERS: PropTypes.bool.isRequired,
+    annotatedPlayers: PropTypes.arrayOf(PropTypes.string)
   };
 
   updateData() {
@@ -70,9 +71,23 @@ export default class Chart extends Component {
     });
   }
 
+  makeTooltip(data, FIELD) {
+    return `
+      <table style='font-size:12px'>
+      <tr><td> Name </td><td> ${ data.Name }</td>
+      <tr><td> Seasons </td><td> ${ data.Seasons }</td>
+      <tr><td> Teams </td><td> ${ data.Team }</td>
+      <tr><td> Age </td><td> ${ data.Age } </td>
+      <tr><td> ${ FIELD } </td><td> ${ yValue(data) } </td>
+      <tr><td> Percentile </td><td>  ${ xValue(data) } </td>
+      </table>
+    `;
+  }
+
   redraw(data, { NUM_SEASONS, FIELD, IS_HITTERS, ASCENDING }) {
     const svg = d3.select('#chart #chart-body');
     const tooltip = d3.select('#dynamic-tooltip');
+    d3.selectAll('.tooltip').style('opacity', 0);
     svg.html(null);
 
     // Set scale of axes
@@ -125,18 +140,11 @@ export default class Chart extends Component {
         tooltip
           .transition()
           .duration(100)
-          .style('opacity', 0.9);
-        const html = `
-        <table style='font-size:12px'>
-        <tr><td> Name </td><td> ${ d.Name }</td>
-        <tr><td> Age </td><td> ${ d.Age } </td>
-        <tr><td> ${ FIELD } </td><td> ${ yValue(d) } </td>
-        <tr><td> Percentile </td><td>  ${ xValue(d) } </td>
-        </table>
-        `;
+          .style('opacity', 1);
+
         const offset = ASCENDING ? 0 : -200;
         tooltip
-          .html(html)
+          .html(this.makeTooltip(d, FIELD))
           .style('left', d3.event.pageX + offset + 'px')
           .style('top', d3.event.pageY + 'px');
       })
@@ -146,6 +154,30 @@ export default class Chart extends Component {
           .duration(1000)
           .style('opacity', 0);
       });
+
+    //draw annotated players
+    this.props.annotatedPlayers.forEach((player, index) => {
+      d3.selectAll('.dot')[0].forEach((dot) => {
+        if (player === _.get(dot, '__data__.Name')) {
+          const playerData = dot.__data__;
+          const annotation = d3.select('#static-tooltip-' + (index + 1));
+          annotation
+            .transition()
+            .duration(100)
+            .style('opacity', 0.9);
+
+          const offset = ASCENDING ? 0 : -200;
+          const bound = dot.getBoundingClientRect();
+          const html = document.documentElement;
+          const y = bound.top + window.pageYOffset - html.clientTop + 6;
+          const x = bound.left + window.pageXOffset - html.clientLeft + 6;
+          annotation
+            .html(this.makeTooltip(playerData, FIELD))
+            .style('left', x + offset + 'px')
+            .style('top', y + 'px');
+        }
+      });
+    });
 
     // draw legend
     let legendData = [
@@ -255,6 +287,8 @@ export default class Chart extends Component {
           </svg>
         </div>
         <div className="tooltip" id="dynamic-tooltip" style={{ opacity: 0 }} />
+        <div className="tooltip" id="static-tooltip-1" style={{ opacity: 0 }} />
+        <div className="tooltip" id="static-tooltip-2" style={{ opacity: 0 }} />
       </div>
     );
   }
