@@ -71,7 +71,21 @@ class About extends React.Component {
               About The Visualization
             </Typography>
             <Typography variant="subheading" id="simple-modal-description" className={ classes.text }>
-              The text of the essay will go here
+              <p>
+                Does the narrative visualization correctly follow the hybrid structure as stated by the essay? The narrative visualization correctly follows the hybrid structure stated in the essay.
+              </p>
+              <p>
+                Does the narrative visualization effectively utilize scenes? The essay properly discusses the layout and design of the scenes of the narrative visualization.
+              </p>
+              <p>
+                Does the narrative visualization effectively utilize annotations? The essay properly discusses the application of the annotations of the narrative visualization.
+              </p>
+              <p>
+                Does the narrative visualization effectively utilize parameters?	The essay properly discusses the parameters of the narrative visualization, including describing which parameters control the current state of the narrative visualization.
+              </p>
+              <p>
+                Does the narrative visualization effectively utilize triggers?	The essay properly discusses the triggers, including what user events trigger what parameter value changes, and how the viewer is aware of available user events.
+              </p>
             </Typography>
           </div>
         </Modal>
