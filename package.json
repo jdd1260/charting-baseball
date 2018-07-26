@@ -1,7 +1,8 @@
 {
-  "name": "baseball-d3",
+  "name": "charting-baseball",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage": "https://jdd1260.github.io/charting-baseball",
   "dependencies": {
     "@material-ui/core": "^1.4.0",
     "@material-ui/lab": "^1.0.0-alpha.6",
@@ -19,13 +20,15 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "npm run lint && react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && gh-pages -d build"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.6",
     "eslint": "^5.1.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-react": "^7.10.0",
+    "gh-pages": "^1.2.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.0",
     "prettier": "^1.13.7"
