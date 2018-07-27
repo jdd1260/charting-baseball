@@ -25,7 +25,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Who&#39;s The Best Baseball Player?</h1>
+          <h1 className="App-title">Who is The Best Baseball Player?</h1>
           <h3>An exploration of the best player performances since 1968</h3>
         </header>
         <div className="container">
