@@ -11,8 +11,8 @@ import './index.css';
 
 // sizing of chart
 const margin = { top: 20, right: 20, bottom: 40, left: 40 };
-const width = 1000 - margin.left - margin.right;
-const height = 600 - margin.top - margin.bottom;
+const width = 950 - margin.left - margin.right;
+const height = 550 - margin.top - margin.bottom;
 
 // setup legend
 const legendHeight = 10;
